@@ -14,11 +14,15 @@ NOTE: As I only have the neomatrix panels, all the other display specific classe
       so this currently only works with my version of Adafruit_NeoMatrix provided here
 
 .h
+
     drawPixel(int16_t x, int16_t y, uint16_t color, int16_t bright = -1)
+    
     drawPixelRGB(int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b, int16_t bright = -1)
 
 .c
+
    void Adafruit_NeoMatrix::drawPixel(int16_t x, int16_t y, uint16_t color, int16_t bright)
+   
    void Adafruit_NeoMatrix::drawPixelRGB(int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b, int16_t bright)
 
 WORK IN PROGRESS - Still got to split out the duplicated code in drawpixel functions to a new
