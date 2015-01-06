@@ -1,8 +1,10 @@
 NeoMatrix_24bitRGB
 ==================
+6/1/15 by Paul W. Rogers
 
 Display 24 bit RGB bitmaps from PROGMEM
-Adafruit_GFX, Adafruit_GFXNeoPixel and Adafruit_GFXNeomatrix libraries modified for 24bit RGB and RGB bitmap draw function
+Adafruit_GFX, Adafruit_NeoPixel and Adafruit_Neomatrix libraries modified for 24bit RGB and RGB bitmap draw function
+and pixel level brightness
 
 Copy the 3 Adafruit directories to your libraries folder
 Copy pwr_matrix_24bittest to your code folder, this is the example sketch
