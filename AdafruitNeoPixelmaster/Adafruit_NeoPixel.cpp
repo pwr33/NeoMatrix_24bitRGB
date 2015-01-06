@@ -13,6 +13,7 @@
   please support Adafruit and open-source hardware by purchasing products
   from Adafruit!
 
+ Modified: Jan 2015 by Paul W. Rogers to provide pixel level brightness control.
   -------------------------------------------------------------------------
   This file is part of the Adafruit NeoPixel library.
 
@@ -832,6 +833,7 @@ void Adafruit_NeoPixel::setPixelColor(
   }
 }
 
+// PWR 2015 add code for pixel level brightness
 // Set pixel color from 'packed' 32-bit RGB color:
 void Adafruit_NeoPixel::setPixelColor(uint16_t n, uint32_t c, int16_t bright) {
   if(n < numLEDs) {

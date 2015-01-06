@@ -29,6 +29,10 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
 CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
+
+Modified: Jan 2015 by Paul W. Rogers to provide RGB bitmap drawing functions 
+* and pixel level brightness control.
+
 */
 
 #include "Adafruit_GFX.h"
@@ -382,6 +386,7 @@ void Adafruit_GFX::drawBitmap(int16_t x, int16_t y,
       	drawPixel(x+i, y+j, bg);
       }
     }
+
   }
 }
 
@@ -393,9 +398,9 @@ void Adafruit_GFX::drawXBitmap(int16_t x, int16_t y,
                               uint16_t color) {
   
   int16_t i, j, byteWidth = (w + 7) / 8;
-  
-  for(j=0; j<h; j++) {
-    for(i=0; i<w; i++ ) {
+  for(i=0; i<w; i++ ) {
+    for(j=0; j<h; j++) {
+    
       if(pgm_read_byte(bitmap + j * byteWidth + i / 8) & (1 << (i % 8))) {
         drawPixel(x+i, y+j, color);
       }
@@ -403,7 +408,22 @@ void Adafruit_GFX::drawXBitmap(int16_t x, int16_t y,
   }
 }
 
-//  Only A stub here, so draw RGB bitmap will not work unless this is overridden 
+// PWR 2015
+// draw an rgb bitmap from progmem
+void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y, const uint8_t *bitmap, 
+                                 int16_t w, int16_t h)
+{ int16_t i, j, pos;
+  for(i=0; i<w; i++ ) {
+    for(j=0; j<h; j++) {
+      pos = (i*h+j)*3;
+      drawPixelRGB(x+i, y+j, pgm_read_byte(bitmap+pos), pgm_read_byte(bitmap+pos+1), pgm_read_byte(bitmap+pos+2));
+    }
+  }
+}
+
+// PWR 2015
+// Only a stub here, so drawRGBBitmap will not work unless this is overridden in 
+// derived class i.e. NeoMatrix class but providing stub here means it does not have to be
 void Adafruit_GFX::drawPixelRGB(int16_t x, int16_t y, uint8_t r, uint8_t g, uint8_t b, int16_t bright)
 {
 }

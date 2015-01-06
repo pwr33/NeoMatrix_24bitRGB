@@ -17,6 +17,9 @@ class Adafruit_GFX : public Print {
   Adafruit_GFX(int16_t w, int16_t h); // Constructor
 
   // This MUST be defined by the subclass:
+  // Including the New Parameter bright=-1 though other than the need to define
+  // the parameter, it is optional to be supported by code in the function
+  // as the default value of -1 will cause it to behave as before in my code changes
   virtual void drawPixel(int16_t x, int16_t y, uint16_t color, int16_t bright = -1) = 0;
   //virtual void drawPixel(int16_t x, int16_t y, uint16_t color) = 0;
   // These MAY be overridden by the subclass to provide device-specific
@@ -29,6 +32,7 @@ class Adafruit_GFX : public Print {
     fillRect(int16_t x, int16_t y, int16_t w, int16_t h, uint16_t color),
     fillScreen(uint16_t color),
     invertDisplay(boolean i);
+  // PWR 2015
   // Only a stub provided here to allow the code for drawRGBBitmap to compile
   // to actually use drawRGBBitmap need to override drawPixelRGB in derived class.
   virtual void
@@ -57,6 +61,10 @@ class Adafruit_GFX : public Print {
       int16_t w, int16_t h, uint16_t color, uint16_t bg),
     drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, 
       int16_t w, int16_t h, uint16_t color),
+    // PWR 2015
+    // New Bitmap drawing function
+    drawRGBBitmap(int16_t x, int16_t y, const uint8_t *bitmap, 
+                  int16_t w, int16_t h),
     drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color,
       uint16_t bg, uint8_t size),
     setCursor(int16_t x, int16_t y),
